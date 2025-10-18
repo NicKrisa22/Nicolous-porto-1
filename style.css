@@ -19,7 +19,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 50px 10%;
+  padding: 30px 10%;
   background: linear-gradient(
     to bottom,
     cornflowerblue 0%,
@@ -29,6 +29,7 @@ body {
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
+
 }
 
 .header.scrolled {
@@ -79,7 +80,7 @@ body {
 
 .home-content {
   max-width: 600px;
-  /* text-align: left; */
+  text-align: left;
   /* flex-shrink: 1; */
 }
 
@@ -337,7 +338,7 @@ body {
 .skill-box {
   display: flex;
   flex-direction: column;
-  align-items: space;
+  align-items: center;
   justify-content: center;
   padding: 15px 5px;
   border-radius: 10px;
@@ -530,7 +531,7 @@ body {
 
 /* Fix for single element width */
 .contact-form .input-box:nth-child(2) input:last-child {
-  margin-left: 10px; /* Space between mobile and subject */
+  margin-left: 10px;
 }
 
 /* Center the submit button */
@@ -635,37 +636,87 @@ body {
 }
 
 @media (max-width: 992px) {
-  /* Home section stacks vertically */
+  
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;    
+    flex-wrap: wrap; 
+    padding: 15px 5%; 
+  }
+
+  .logo {
+    flex-grow: 1; 
+    text-align: left;
+    margin-bottom: 5px;
+    
+  }
+  .navbar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+    width: 100%;
+    align-items: flex-start;
+    margin-top: 5px;
+  }
+
+  .navbar a {
+    margin: 0; 
+    padding: 8px 5px; 
+    text-align: center;
+    width: 100%;
+    font-size: 16px;
+  }
+
   .home {
     flex-direction: column;
     text-align: center;
-    padding: 100px 5% 50px;
+    padding: 180px 5% 50px;
     gap: 50px;
   }
 
   .home-icon {
-    /* Remove absolute positioning and center the icons */
     position: static;
-    width: 170px;
+    width: 220px;
     margin: 30px auto 0;
   }
 
   .home-content {
     max-width: 100%;
+    text-align: center;
   }
 
-  /* Reduce image size and push it to the top */
+  .home-content .btn-box {
+    display: block;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .btn-box a {
+    display: center; 
+    width: 150px; 
+    height: 50px; 
+    margin: 0 auto; 
+  }
+
   .home-img {
     width: 250px;
     height: 250px;
     order: -1;
   }
 
-  .header {
-    padding: 20px 5%; /* Adjust header padding */
+  .home-content p,
+  .home-content h1,
+  .home-content h3 {
+    text-align: center;
   }
 
-  /* Contact Form adjustment */
+  .header {
+    padding: 20px 5%; /
+  }
+
+
   .contact-form .input-box {
     flex-direction: column;
   }
@@ -676,23 +727,29 @@ body {
     margin-bottom: 20px;
   }
 
-  /* About Gallery - Stack boxes vertically on mobile */
+  
   .about-gallery {
-    grid-template-columns: 1fr; /* Single column on mobile */
+    grid-template-columns: 1fr;
     width: 100%;
     max-width: 400px;
     height: auto;
   }
 
   .gallery-box {
-    height: 200px; /* Fixed height for vertical boxes */
+    height: 200px; 
   }
 
   .about-details {
     text-align: center;
   }
 
-  /* Footer - Force content to stack and center */
+  .skill-boxes {
+    width: 100%;
+    max-width: 400px; /* Constrain to a reasonable size for centering */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .footer-content {
     gap: 40px;
     flex-direction: column;
@@ -709,11 +766,14 @@ body {
     text-align: center;
   }
   .footer-icons {
-    margin: 0 auto; /* Center icons when stacked */
+    margin: 0 auto; 
   }
+
+  .btn-box a {
+        margin: 0 auto; 
+    }
 }
 
-/* Mobile Screens (<= 576px) */
 @media (max-width: 576px) {
   .home-content h1 {
     font-size: 40px;
@@ -725,7 +785,6 @@ body {
     font-size: 36px;
   }
   .skill-boxes {
-    /* Allows for three columns on very small screens */
     grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
   }
 }
