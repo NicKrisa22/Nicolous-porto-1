@@ -383,6 +383,13 @@ body {
 .python-color i {
   color: #3776ab;
 }
+.mysql-color i { 
+  color: #00758F; 
+}
+
+.cloud-color i { 
+  color: #FF9900; 
+}
 
 .projects {
   min-height: 10vh;
