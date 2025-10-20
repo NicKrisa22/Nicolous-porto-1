@@ -169,15 +169,18 @@
       <h2 class="heading">Contact <span>Me</span> <span>Here</span></h2>
       <p class="contact-sub">Let's connect and discuss!</p>
 
-      <form action="#" class="contact-form">
+      <form name="contact" method="POST" data-netlify="true" class="contact-form">
+
+        <input type="hidden" name="form-name" value="contact" />
+
         <div class="input-box">
-          <input type="text" placeholder="Full Name" required />
-          <input type="email" placeholder="Email Address" required />
+          <input type="text" name="full-name" placeholder="Full Name" required>
+          <input type="email" name="email" placeholder="Email Address" required>
         </div>
 
         <div class="input-box">
-          <input type="tel" placeholder="Phone Number" required />
-          <input type="text" placeholder="Email Subject" required />
+          <input type="tel" name="phone" placeholder="Mobile Number" required>
+          <input type="text" name="subject" placeholder="Email Subject" required>
         </div>
 
         <textarea

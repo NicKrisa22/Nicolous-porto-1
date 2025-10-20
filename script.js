@@ -71,20 +71,20 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // --- 3. CONTACT FORM SUBMISSION HANDLING ---
-  if (contactForm) {
-    contactForm.addEventListener("submit", function (event) {
-      event.preventDefault();
+  // if (contactForm) {
+  //   contactForm.addEventListener("submit", function (event) {
+  //     event.preventDefault();
 
-      if (formMessage) {
-        formMessage.classList.remove("hidden");
-        formMessage.textContent =
-          "Thank you for your message! I'll get back to you soon.";
+  //     if (formMessage) {
+  //       formMessage.classList.remove("hidden");
+  //       formMessage.textContent =
+  //         "Thank you for your message! I'll get back to you soon.";
 
-        setTimeout(() => {
-          contactForm.reset();
-          formMessage.classList.add("hidden");
-        }, 3000);
-      }
-    });
-  }
+  //       setTimeout(() => {
+  //         contactForm.reset();
+  //         formMessage.classList.add("hidden");
+  //       }, 3000);
+  //     }
+  //   });
+  // }
 });
