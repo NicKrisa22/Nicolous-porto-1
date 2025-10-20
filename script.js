@@ -4,6 +4,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const sections = document.querySelectorAll("section[id]");
   const contactForm = document.querySelector(".contact-form");
   const formMessage = document.getElementById("form-message");
+  const openModalBtn = document.getElementById("open-confirm-modal");
+  const modalOverlay = document.getElementById("contact-modal");
+  const modalText = document.getElementById("modal-text");
+  const modalActions = document.getElementById("modal-actions");
 
   // --- 1. SCROLL SPY & HEADER BACKGROUND ---
   const setActiveLink = () => {
@@ -87,4 +91,80 @@ document.addEventListener("DOMContentLoaded", function () {
   //     }
   //   });
   // }
+
+  // --- 3. MODAL LOGIC (Confirmation and Success) ---
+
+  // Function to close the modal
+  const closeModal = () => {
+    modalOverlay.classList.add("hidden-modal");
+    modalOverlay.style.visibility = "hidden";
+  };
+
+  // Function to show success message and clear form
+  const showSuccessModal = () => {
+    modalOverlay.style.visibility = "visible";
+    modalOverlay.classList.remove("hidden-modal");
+    modalText.innerHTML = `<h4>Success!</h4><p>Your message has been securely sent. I'll review it and get back to you soon.</p>`;
+    modalActions.innerHTML = `<button class="modal-btn yes" id="modal-close">Close</button>`;
+    document
+      .getElementById("modal-close")
+      .addEventListener("click", closeModal);
+    contactForm.reset();
+    window.history.pushState(null, "", "/#contact");
+  };
+
+  // Function to handle the final Netlify submission via secure fetch
+  const handleNetlifySubmission = () => {
+    const formData = new FormData(contactForm);
+    const encodedData = new URLSearchParams(formData).toString();
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encodedData,
+    })
+      .then(() => {
+        showSuccessModal();
+      })
+      .catch((error) => {
+        modalOverlay.style.visibility = "visible";
+        modalOverlay.classList.remove("hidden-modal");
+        modalText.innerHTML = `<h4>Error!</h4><p>Failed to send message. Please try again or email me directly.</p>`;
+        modalActions.innerHTML = `<button class="modal-btn yes" id="modal-close">Close</button>`;
+        document
+          .getElementById("modal-close")
+          .addEventListener("click", closeModal);
+        console.error("Submission error:", error);
+      });
+  };
+
+  const openConfirmationModal = () => {
+    if (!contactForm.checkValidity()) {
+      contactForm.reportValidity();
+      return;
+    }
+
+    modalOverlay.style.visibility = "visible";
+    modalOverlay.classList.remove("hidden-modal");
+    modalText.innerHTML = `
+            <h4>Confirm Submission</h4>
+            <p>Are you sure you want to send this message to Nicolous Krisandry?</p>
+        `;
+    modalActions.innerHTML = `
+            <button class="modal-btn yes" id="modal-send">Yes, Send</button>
+            <button class="modal-btn no" id="modal-cancel">No, Review</button>
+        `;
+
+    document.getElementById("modal-send").addEventListener("click", () => {
+      closeModal();
+      handleNetlifySubmission();
+    });
+
+    document
+      .getElementById("modal-cancel")
+      .addEventListener("click", closeModal);
+  };
+
+  if (openModalBtn) {
+    openModalBtn.addEventListener("click", openConfirmationModal);
+  }
 });

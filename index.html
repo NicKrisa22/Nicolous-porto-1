@@ -169,8 +169,9 @@
       <h2 class="heading">Contact <span>Me</span> <span>Here</span></h2>
       <p class="contact-sub">Let's connect and discuss!</p>
 
-      <form name="contact" method="POST" data-netlify="true" class="contact-form">
+      <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/#contact" class="contact-form">
 
+        <input type="hidden" name="bot-field" />
         <input type="hidden" name="form-name" value="contact" />
 
         <div class="input-box">
@@ -190,10 +191,7 @@
           placeholder="Your Message"
           required
         ></textarea>
-        <button type="submit" class="btn-submit">Send Message</button>
-        <p id="form-message" class="hidden">
-          Thank you for your message! I'll get back to you soon.
-        </p>
+        <button type="submit" id="open-confirm-modal" class="btn-submit">Send Message</button>
       </form>
     </section>
 
@@ -232,6 +230,13 @@
         </p>
       </div>
     </footer>
+
+    <div id="contact-modal" class="modal-overlay hidden-modal">
+      <div class="modal-content">
+        <div id="modal-text"></div>
+        <div class="modal-actions" id="modal-actions"></div>
+      </div>
+    </div>
 
     <script src="script.js"></script>
   </body>
