@@ -395,6 +395,8 @@ body {
   margin-bottom: 5px;
 }
 
+
+
 .skill-box span {
   font-size: 14px;
   font-weight: 500;
@@ -424,6 +426,12 @@ body {
 
 .cloud-color i { 
   color: #FF9900; 
+}
+.laravel-color img { 
+  color: #FF9900; 
+}
+.php-color i { 
+  color: #4b87e2; 
 }
 
 .projects {
